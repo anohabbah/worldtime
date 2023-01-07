@@ -1,5 +1,5 @@
 <template>
-  <div>APP</div>
+  <Hello />
 </template>
 
 <style>
