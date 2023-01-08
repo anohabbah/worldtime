@@ -1,5 +1,12 @@
+<script lang="ts" setup>
+import { zones } from './composables/state'
+</script>
+
 <template>
-  <Hello />
+  <div border="~ gray/20 m2 p2">
+    <ActionBar />
+    <TimeSchedular />
+  </div>
 </template>
 
 <style>
