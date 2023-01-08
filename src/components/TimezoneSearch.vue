@@ -4,16 +4,16 @@ import type { Timezone } from '../types'
 
 const fuzzy = new Fuse(timezones, { keys: ['name'] })
 
-const input = ref('')
-const index = ref(0)
-const searchResult = computed(() => {
-  return fuzzy.search(input.value)
+let input = $ref('')
+let index = $ref(0)
+const searchResult = $computed(() => {
+  return fuzzy.search(input)
 })
 
 const add = (timezone: Timezone) => {
   addToTimezones(timezone)
-  input.value = ''
-  index.value = 0
+  input = ''
+  index = 0
 }
 </script>
 
