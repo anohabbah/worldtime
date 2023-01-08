@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import Fuse from 'fuse.js'
-import { timezones } from '../composables/data'
-import { addToTimezones } from '../composables/state'
 import type { Timezone } from '../types'
 
 const fuzzy = new Fuse(timezones, { keys: ['name'] })
