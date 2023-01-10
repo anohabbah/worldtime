@@ -48,6 +48,7 @@ declare global {
   const markRaw: typeof import('vue')['markRaw']
   const move: typeof import('./src/composables/state')['move']
   const nextTick: typeof import('vue')['nextTick']
+  const now: typeof import('./src/composables/state')['now']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeUnmount: typeof import('vue')['onBeforeUnmount']
@@ -324,6 +325,7 @@ declare module 'vue' {
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly move: UnwrapRef<typeof import('./src/composables/state')['move']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly now: UnwrapRef<typeof import('./src/composables/state')['now']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
