@@ -23,7 +23,7 @@ const onkeydown = (evt: KeyboardEvent) => {
   if (evt.key === 'ArrowUp')
     index = (index - 1 + searchResult.length) % searchResult.length
 
-  if (evt.key == 'Enter')
+  if (evt.key === 'Enter')
     add(searchResult[index].item)
 }
 </script>
@@ -35,12 +35,17 @@ const onkeydown = (evt: KeyboardEvent) => {
       p="x3 y1" border="~ base rounded" bg-transparent w-full
       @keydown="onkeydown"
     >
-    <div v-show="input" absolute top-full bg-base p1 border="~ base" left-0 right-0 max-h-100 overflow-auto>
+    <div
+      v-show="input"
+      absolute top-full bg-base border="~ base rounded"
+      left-0 right-0 max-h-100 overflow-auto shadow
+      z-10
+    >
       <button
         v-for="(item, idx) in searchResult"
         :key="item.refIndex"
         :class="idx === index ? 'bg-gray:5' : ''"
-        block w-full
+        block w-full px2
         @click="add(item.item)"
       >
         <TimezoneItem :timezone="item.item" />

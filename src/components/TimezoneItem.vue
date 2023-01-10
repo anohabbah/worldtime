@@ -12,7 +12,7 @@ const offset = $computed(() => new Intl.NumberFormat('fr-FR', {
   style: 'decimal',
   maximumFractionDigits: 0,
   minimumFractionDigits: 0,
-  signDisplay: 'exceptZero',
+  signDisplay: 'always',
 })
   .format(timezone.offset))
 </script>
