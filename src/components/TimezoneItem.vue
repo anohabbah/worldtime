@@ -13,8 +13,8 @@ const formatter = new Intl.DateTimeFormat('en-US', {
   minute: 'numeric',
 })
 
-const state = $computed(() => timezone.name.split('/')[0].replace(/_/, ' '))
-const city = $computed(() => timezone.name.split('/')[1].replace(/_/, ' '))
+const state = $computed(() => timezone.name.split('/')[0].replace(/_/g, ' '))
+const city = $computed(() => timezone.name.split('/')[1]?.replace(/_/g, ' ') || '')
 const offset = $computed(() => new Intl.NumberFormat('fr-FR', {
   style: 'decimal',
   maximumFractionDigits: 0,
@@ -26,7 +26,7 @@ const time = $computed(() => formatter.format(now.value))
 </script>
 
 <template>
-  <div flex gap2 py1>
+  <div flex flex-wrap gap2 py1>
     <div w-8 ma op80 font-bold>
       {{ offset }}
     </div>
@@ -42,5 +42,6 @@ const time = $computed(() => formatter.format(now.value))
     <div tabular-nums>
       {{ time }}
     </div>
+    <slot />
   </div>
 </template>

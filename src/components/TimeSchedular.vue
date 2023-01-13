@@ -9,7 +9,9 @@
       px4 py2
       border="b base" relative
     >
-      <TimezoneItem :timezone="zone" />
+      <TimezoneItem :timezone="zone">
+        <TimeDial :timezone="zone" />
+      </TimezoneItem>
 
       <div class="absolute" left="-30px" top-0 bottom-0 text-xl flex="~ col" justify-center>
         <button
