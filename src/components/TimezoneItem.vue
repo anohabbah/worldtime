@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import type { Timezone } from '../types'
+import { currentOffset } from '../composables/state'
 
 const { timezone } = defineProps({
   timezone: Object as PropType<Timezone>,
@@ -12,22 +13,28 @@ const formatter = new Intl.DateTimeFormat('en-US', {
   hour: 'numeric',
   minute: 'numeric',
 })
-
-const state = $computed(() => timezone.name.split('/')[0].replace(/_/g, ' '))
-const city = $computed(() => timezone.name.split('/')[1]?.replace(/_/g, ' ') || '')
-const offset = $computed(() => new Intl.NumberFormat('fr-FR', {
+const numberFormatter = new Intl.NumberFormat('fr-FR', {
   style: 'decimal',
   maximumFractionDigits: 0,
   minimumFractionDigits: 0,
   signDisplay: 'always',
 })
-  .format(timezone.offset))
+
+const state = $computed(() => timezone.name.split('/')[0].replace(/_/g, ' '))
+const city = $computed(() => timezone.name.split('/')[1]?.replace(/_/g, ' ') || '')
+const offset = $computed(() => {
+  const offset = timezone.offset - currentOffset.value
+  return numberFormatter.format(offset)
+})
 const time = $computed(() => formatter.format(now.value))
 </script>
 
 <template>
   <div flex flex-wrap gap2 py1>
-    <div w-8 ma op80 font-bold>
+    <div
+      w-8 ma op80 font-bold text-center
+      :title="`${timezone.offset} GMT`"
+    >
       {{ offset }}
     </div>
     <div flex="~ col" text-left flex-auto>

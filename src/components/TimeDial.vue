@@ -30,11 +30,11 @@ function isNight(h: number) {
     <template
       v-for="(day, idx) in days" :key="idx"
     >
-      <div v-if="day.length" flex="~" border="~ sky7/30 rounded" of-hidden>
+      <div v-if="day.length" flex="~" border="~ sky7/30 rounded" of-hidden flex-none>
         <div
           v-for="i in day" :key="i"
           flex="~ col none"
-          w7 h8
+          w7 h8 flex-none
           items-center justify-center
           :class="[isMidnight(i) ? 'bg-sky7/70 text-white' : isNight(i) ? 'bg-sky/20' : '']"
         >

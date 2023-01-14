@@ -1,7 +1,10 @@
 import type { Timezone } from '@/types'
 
-export const now = useNow()
+const userTimezone = new Intl.DateTimeFormat().resolvedOptions().timeZone
+export const now = useNow({ interval: 30_000 })
 export const zoneNames = useStorage<string[]>('world-time-zones', [])
+export const currentZone = ref(userTimezone)
+export const currentOffset = ref(timezones.find(i => i.name === currentZone.value).offset)
 export const zones = $computed<Timezone[]>(() => {
   return zoneNames.value.map(name => timezones.find(zone => zone.name === name))
 })
@@ -27,6 +30,5 @@ export function move(zone: Timezone, delta: -1 | 1) {
   zoneNames.value[idx] = targetIdxItem
 }
 
-const userTimezone = new Intl.DateTimeFormat().resolvedOptions().timeZone
 if (!zones.length)
   zoneNames.value.push(userTimezone)
