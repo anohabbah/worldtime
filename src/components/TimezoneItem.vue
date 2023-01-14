@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import type { Timezone } from '../types'
-import { currentOffset } from '../composables/state'
+import { homeOffset } from '../composables/state'
 
 const { timezone } = defineProps({
   timezone: Object as PropType<Timezone>,
@@ -23,7 +23,7 @@ const numberFormatter = new Intl.NumberFormat('fr-FR', {
 const state = $computed(() => timezone.name.split('/')[0].replace(/_/g, ' '))
 const city = $computed(() => timezone.name.split('/')[1]?.replace(/_/g, ' ') || '')
 const offset = $computed(() => {
-  const offset = timezone.offset - currentOffset.value
+  const offset = timezone.offset - homeOffset.value
   return numberFormatter.format(offset)
 })
 const time = $computed(() => formatter.format(now.value))
