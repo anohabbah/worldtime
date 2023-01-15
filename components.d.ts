@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     ActionBar: typeof import('./src/components/ActionBar.vue')['default']
     Hello: typeof import('./src/components/Hello.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    SelectionOverlay: typeof import('./src/components/SelectionOverlay.vue')['default']
     ThemeSwitcher: typeof import('./src/components/ThemeSwitcher.vue')['default']
     TimeDial: typeof import('./src/components/TimeDial.vue')['default']
     TimeSchedular: typeof import('./src/components/TimeSchedular.vue')['default']

@@ -26,7 +26,12 @@ function isNight(h: number) {
 </script>
 
 <template>
-  <div flex="~ gap1" of-auto items-center>
+  <div
+    flex="~ gap1"
+    select-none
+    of-auto items-end
+    class="time-dial"
+  >
     <template
       v-for="(day, idx) in days" :key="idx"
     >

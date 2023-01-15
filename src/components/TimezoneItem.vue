@@ -13,7 +13,7 @@ const formatter = new Intl.DateTimeFormat('en-US', {
   hour: 'numeric',
   minute: 'numeric',
 })
-const numberFormatter = new Intl.NumberFormat('fr-FR', {
+const numberFormatter = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   maximumFractionDigits: 0,
   minimumFractionDigits: 0,
@@ -30,27 +30,29 @@ const time = $computed(() => formatter.format(now.value))
 </script>
 
 <template>
-  <div flex flex-wrap gap3 py1>
-    <div
-      w-8 ma op80 font-bold text-center
-      :title="`${timezone.offset} GMT`"
-    >
-      <div v-if="timezone.name === homeZone" i-ri-home-2-fill op50 ma />
-      <div v-else text-sky6>
-        {{ offset }}
+  <div flex="~ col lg:row" gap3 py1>
+    <div flex="~ wrap">
+      <div
+        w-8 ma op80 font-bold text-center
+        :title="`${timezone.offset} GMT`"
+      >
+        <div v-if="timezone.name === homeZone" i-ri-home-2-fill op50 ma />
+        <div v-else text-sky6>
+          {{ offset }}
+        </div>
       </div>
-    </div>
-    <div flex="~ col" text-left flex-auto>
-      <div>
-        {{ city }}
-        <sup border="~ base rounded" px1>{{ timezone.abbr }}</sup>
+      <div flex="~ col" text-left flex-auto w-30>
+        <div>
+          {{ city }}
+          <sup border="~ base rounded" px1>{{ timezone.abbr }}</sup>
+        </div>
+        <div text-sm op50 leading-1em>
+          {{ state }}
+        </div>
       </div>
-      <div text-sm op50 leading-1em>
-        {{ state }}
+      <div tabular-nums ma text-sm w-20>
+        {{ time }}
       </div>
-    </div>
-    <div tabular-nums ma text-sm>
-      {{ time }}
     </div>
     <slot />
   </div>
