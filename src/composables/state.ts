@@ -39,6 +39,10 @@ export function remove(zone: Timezone) {
   zoneNames.value = zoneNames.value.filter(name => zone.name !== name)
 }
 
+export function setHome(zone: Timezone) {
+  homeZone.value = zone.name
+}
+
 export function move(zone: Timezone, delta: -1 | 1) {
   const idx = zoneNames.value.indexOf(zone.name)
 
